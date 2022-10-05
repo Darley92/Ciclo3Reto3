@@ -18,6 +18,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "idClient")
+    @JsonIgnoreProperties("messages")
     private Client Client;
 
     @ManyToOne

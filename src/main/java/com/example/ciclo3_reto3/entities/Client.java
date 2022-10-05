@@ -23,11 +23,11 @@ public class Client implements Serializable {
 
 
     @OneToMany
-    @JsonIgnoreProperties("message")
+    @JsonIgnoreProperties("client")
     private List<Message> messages;
 
     @OneToMany
-    @JsonIgnoreProperties("reservation")
+    @JsonIgnoreProperties("client")
     private List<Reservation> reservations;
 
 

@@ -23,7 +23,7 @@ public class Machine implements Serializable {
     @JsonIgnoreProperties("machines")
     private Category category;
     @OneToMany
-    @JsonIgnoreProperties("message")
+    @JsonIgnoreProperties("machine")
     private List<Message> messages;
 
     @OneToMany
