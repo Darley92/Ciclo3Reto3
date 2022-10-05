@@ -18,8 +18,9 @@ public class Machine implements Serializable {
     private String brand;
     private Integer year;
     private String description;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idCategory")
+    @JsonIgnoreProperties("machines")
     private Category category;
     @OneToMany
     @JsonIgnoreProperties("message")

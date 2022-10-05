@@ -1,6 +1,5 @@
 package com.example.ciclo3_reto3.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +17,10 @@ public class Reservation implements Serializable {
     private Date startDate;
     private Date devolutionDate;
 
+    private String status="created";
+
+
+
 
     @ManyToOne
     @JoinColumn(name = "idClient")
@@ -29,6 +32,14 @@ public class Reservation implements Serializable {
 
     public Machine getMachine() {
         return machine;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setMachine(Machine machine) {
