@@ -18,12 +18,11 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties("reservations")
     private Client Client;
 
     @ManyToOne
     @JoinColumn(name = "id")
-    @JsonIgnoreProperties("machines")
+    @JsonIgnoreProperties("messages")
     private Machine machine;
 
     public com.example.ciclo3_reto3.entities.Client getClient() {

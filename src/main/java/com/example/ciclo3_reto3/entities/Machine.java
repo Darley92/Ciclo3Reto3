@@ -27,7 +27,7 @@ public class Machine implements Serializable {
     private List<Message> messages;
 
     @OneToMany
-    @JsonIgnoreProperties("reservation")
+    @JsonIgnoreProperties("machine")
     private List<Reservation> reservations;
 
     public List<Message> getMessages() {

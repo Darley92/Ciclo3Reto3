@@ -1,6 +1,8 @@
 package com.example.ciclo3_reto3.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,6 +24,7 @@ public class Reservation implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id")
+    @JsonIgnoreProperties("machines")
     private Machine machine;
 
     @ManyToOne
