@@ -13,7 +13,7 @@ public class MachineController {
     @Autowired
     private MachineService machineService;
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public List<Machine> getAll(){
         return machineService.getAll();
     }
