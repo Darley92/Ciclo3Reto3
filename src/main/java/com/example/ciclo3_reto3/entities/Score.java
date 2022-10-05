@@ -12,7 +12,10 @@ public class Score implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idScore;
+    @Column(nullable = false)
     private String messageText;
+    @Column(nullable = false)
+
     private Integer stars;
 
     @OneToOne

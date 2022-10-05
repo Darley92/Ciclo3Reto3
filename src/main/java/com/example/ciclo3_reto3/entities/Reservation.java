@@ -36,8 +36,13 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties("reservation")
     private Score score;
 
+    public Score getScore() {
+        return score;
+    }
 
-
+    public void setScore(Score score) {
+        this.score = score;
+    }
 
     public Machine getMachine() {
         return machine;

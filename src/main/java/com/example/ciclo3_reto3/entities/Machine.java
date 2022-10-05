@@ -22,12 +22,12 @@ public class Machine implements Serializable {
     @JoinColumn(name = "idCategory")
     @JsonIgnoreProperties("machines")
     private Category category;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
     @JsonIgnoreProperties({"machine","client"})
     private List<Message> messages;
 
-    @OneToMany
-    @JsonIgnoreProperties({"machine","message"})
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
+    @JsonIgnoreProperties({"machine","messages"})
     private List<Reservation> reservations;
 
     public List<Message> getMessages() {
