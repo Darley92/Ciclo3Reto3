@@ -16,14 +16,12 @@ public class CategoryRepository {
     public List<Category> getAll(){
         return (List<Category>) categoryCrudRepository.findAll();
     }
-
     public Optional<Category> getCategory(int id){
         return categoryCrudRepository.findById(id);
     }
-    public Category save(Category c){
-        return categoryCrudRepository.save(c);
+    public Category save(Category category){return categoryCrudRepository.save(category);
     }
-    public void delete(Category c){
-        categoryCrudRepository.delete(c);
+    public void delete(Category category){
+        categoryCrudRepository.delete(category);
     }
 }

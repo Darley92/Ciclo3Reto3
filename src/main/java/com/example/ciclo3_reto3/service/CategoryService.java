@@ -19,42 +19,39 @@ public class CategoryService {
     public Optional<Category> getCategory(int id){
         return categoryRepository.getCategory(id);
     }
-    public Category save(Category c){
-        if(c.getId()==null){
-            return categoryRepository.save(c);
+    public Category save(Category category){
+        if(category.getId()==null){
+            return categoryRepository.save(category);
         }else{
-            Optional<Category> e = categoryRepository.getCategory(c.getId());
+            Optional<Category> e = categoryRepository.getCategory(category.getId());
             if(e.isPresent()){
-                return c;
+                return category;
             }else{
-                return categoryRepository.save(c);
+                return categoryRepository.save(category);
             }
         }
     }
-    public Category update(Category c){
-        if(c.getId()!=null){
-            Optional<Category> f = categoryRepository.getCategory(c.getId());
-            if(f.isPresent()){
-                if(c.getName()!=null){
-                    f.get().setName(c.getName());
+    public Category update(Category category){
+        if(category.getId()!=null){
+            Optional<Category>g= categoryRepository.getCategory(category.getId());
+            if(!g.isEmpty()){
+                if(category.getDescription()!=null){
+                    g.get().setDescription(category.getDescription());
                 }
-                categoryRepository.save(f.get());
-                return f.get();
-            }else{
-                return c;
+                if(category.getName()!=null){
+                    g.get().setName(category.getName());
+                }
+                return categoryRepository.save(g.get());
             }
-        }else{
-            return c;
         }
+        return category;
     }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Category>p= categoryRepository.getCategory(id);
-        if(p.isPresent()){
-            categoryRepository.delete(p.get());
-            flag=true;
-        }
-        return flag;
+    public boolean deleteCategory(int id){
+        boolean d = getCategory(id).map(category -> {
+            categoryRepository.delete(category);
+            return true;
+        }).orElse(false);
+        return d;
 
     }
 }

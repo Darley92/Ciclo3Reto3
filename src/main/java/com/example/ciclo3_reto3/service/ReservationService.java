@@ -23,50 +23,48 @@ public class ReservationService {
         return reservationRepository.getReservation(id);
     }
 
-    public Reservation save(Reservation r) {
-        if (r.getIdReservation() == null) {
-            return reservationRepository.save(r);
+    public Reservation save(Reservation reservation) {
+        if (reservation.getIdReservation() == null) {
+            return reservationRepository.save(reservation);
         } else {
-            Optional<Reservation> e = reservationRepository.getReservation(r.getIdReservation());
+            Optional<Reservation> e = reservationRepository.getReservation(reservation.getIdReservation());
             if (e.isPresent()) {
-                return r;
+                return reservation;
             } else {
-                return reservationRepository.save(r);
+                return reservationRepository.save(reservation);
             }
         }
     }
 
-    public Reservation update (Reservation r){
-        if(r.getIdReservation()!=null){
-            Optional<Reservation> f = reservationRepository.getReservation(r.getIdReservation());
-            if(f.isPresent()){
-                if(r.getIdReservation()!=null){
-                    f.get().setIdReservation(r.getIdReservation());
-                }
-                if(r.getStartDate()!=null){
-                    f.get().setStartDate(r.getStartDate());
-                }
-                if(r.getDevolutionDate()!=null){
-                    f.get().setDevolutionDate(r.getDevolutionDate());
-                }
+    public Reservation update(Reservation reservation){
+        if(reservation.getIdReservation()!=null){
+            Optional<Reservation> e= reservationRepository.getReservation(reservation.getIdReservation());
+            if(!e.isEmpty()){
 
-                reservationRepository.save(f.get());
-                return f.get();
+                if(reservation.getStartDate()!=null){
+                    e.get().setStartDate(reservation.getStartDate());
+                }
+                if(reservation.getDevolutionDate()!=null){
+                    e.get().setDevolutionDate(reservation.getDevolutionDate());
+                }
+                if(reservation.getStatus()!=null){
+                    e.get().setStatus(reservation.getStatus());
+                }
+                reservationRepository.save(e.get());
+                return e.get();
             }else{
-                return r;
+                return reservation;
             }
         }else{
-            return r;
+            return reservation;
         }
     }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Reservation>p= reservationRepository.getReservation(id);
-        if(p.isPresent()){
-            reservationRepository.delete(p.get());
-            flag=true;
-        }
-        return flag;
+    public boolean deleteReservation(int id){
+        boolean d = getReservation(id).map(reservation -> {
+            reservationRepository.delete(reservation);
+            return true;
+        }).orElse(false);
+        return d;
 
     }
 

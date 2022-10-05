@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Message")
@@ -19,12 +20,29 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/all")
-    public List<Message> getAll(){
+    public List<Message> getMessage(){
         return messageService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Message> getMessage(@PathVariable("id") int messageId) {
+        return messageService.getMessage(messageId);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Message save(@RequestBody  Message m){
-        return messageService.save(m);
+    public Message save(@RequestBody  Message message){
+        return messageService.save(message);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message message) {
+        return messageService.update(message);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return messageService.deleteMessage(id);
     }
 }

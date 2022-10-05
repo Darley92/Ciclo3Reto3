@@ -21,44 +21,47 @@ public class ClientService {
     public Optional<Client> getClient(int id){
         return clientRepository.getClient(id);
     }
-    public Client save(Client p){
-        if(p.getIdClient()==null){
-            return clientRepository.save(p);
+    public Client save(Client client){
+        if(client.getIdClient()==null){
+            return clientRepository.save(client);
         }else{
-            Optional<Client> e = clientRepository.getClient(p.getIdClient());
+            Optional<Client> e = clientRepository.getClient(client.getIdClient());
             if(e.isPresent()){
 
-                return p;
+                return client;
             }else{
-                return clientRepository.save(p);
+                return clientRepository.save(client);
             }
         }
     }
-    public Client update(Client c){
-        if(c.getIdClient()!=null){
-            Optional<Client> f = clientRepository.getClient(c.getIdClient());
-            if(f.isPresent()){
-                if(c.getName()!=null){
-                    f.get().setName(c.getName());
+    public Client update(Client client){
+        if(client.getIdClient()!=null){
+            Optional<Client> e= clientRepository.getClient(client.getIdClient());
+            if(!e.isEmpty()){
+                if(client.getName()!=null){
+                    e.get().setName(client.getName());
                 }
-                clientRepository.save(f.get());
-                return f.get();
+                if(client.getAge()!=null){
+                    e.get().setAge(client.getAge());
+                }
+                if(client.getPassword()!=null){
+                    e.get().setPassword(client.getPassword());
+                }
+                clientRepository.save(e.get());
+                return e.get();
             }else{
-                return c;
+                return client;
             }
         }else{
-            return c;
+            return client;
         }
     }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Client>p= clientRepository.getClient(id);
-        if(p.isPresent()){
-            clientRepository.delete(p.get());
-            flag=true;
-        }
-        return flag;
-
+    public boolean deleteClient(int id){
+        boolean d = getClient(id).map(client -> {
+            clientRepository.delete(client);
+            return true;
+        }).orElse(false);
+        return d;
     }
 
 
