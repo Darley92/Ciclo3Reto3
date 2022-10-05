@@ -23,11 +23,11 @@ public class Machine implements Serializable {
     @JsonIgnoreProperties("machines")
     private Category category;
     @OneToMany
-    @JsonIgnoreProperties("machine")
+    @JsonIgnoreProperties({"machine","client"})
     private List<Message> messages;
 
     @OneToMany
-    @JsonIgnoreProperties("machine")
+    @JsonIgnoreProperties({"machine","message"})
     private List<Reservation> reservations;
 
     public List<Message> getMessages() {
