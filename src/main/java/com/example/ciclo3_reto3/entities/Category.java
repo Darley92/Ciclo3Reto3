@@ -1,7 +1,6 @@
 package com.example.ciclo3_reto3.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,23 +9,21 @@ import java.util.List;
 @Entity
 @Table (name = "category")
 public class Category implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCategory;
+    private Integer id;
     private String name;
     private String description;
-
     @OneToMany
     @JsonIgnoreProperties("category")
     private List<Machine> machines;
 
-    public Integer getIdCategory() {
-        return idCategory;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCategory(Integer id) {
-        this.idCategory = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

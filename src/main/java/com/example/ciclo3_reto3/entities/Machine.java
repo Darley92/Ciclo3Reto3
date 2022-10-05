@@ -16,15 +16,11 @@ public class Machine implements Serializable {
     private Integer id;
     private String name;
     private String brand;
-
     private Integer year;
     private String description;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idCategory")
     private Category category;
-
-
     @OneToMany
     @JsonIgnoreProperties("message")
     private List<Message> messages;
