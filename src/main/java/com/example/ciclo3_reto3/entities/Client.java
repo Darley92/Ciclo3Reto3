@@ -18,10 +18,6 @@ public class Client implements Serializable {
     private String name;
     private Integer age;
 
-
-
-
-
     @OneToMany
     @JsonIgnoreProperties("client")
     private List<Message> messages;

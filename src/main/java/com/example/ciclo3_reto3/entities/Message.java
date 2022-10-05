@@ -23,16 +23,15 @@ public class Message {
     @ManyToOne
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"messages","reservations"})
-    private Client Client;
+    private Client client;
 
 
-
-    public com.example.ciclo3_reto3.entities.Client getClient() {
-        return Client;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClient(com.example.ciclo3_reto3.entities.Client client) {
-        Client = client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Machine getMachine() {
