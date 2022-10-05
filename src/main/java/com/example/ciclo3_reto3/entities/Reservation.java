@@ -20,15 +20,15 @@ public class Reservation implements Serializable {
     private String status="created";
 
 
-
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Machine machine;
 
     @ManyToOne
     @JoinColumn(name = "idClient")
     private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Machine machine;
+
 
     public Machine getMachine() {
         return machine;

@@ -2,6 +2,8 @@ package com.example.ciclo3_reto3.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
@@ -16,10 +18,12 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "idClient")
+    @JsonIgnoreProperties("reservations")
     private Client Client;
 
     @ManyToOne
     @JoinColumn(name = "id")
+    @JsonIgnoreProperties("machines")
     private Machine machine;
 
     public com.example.ciclo3_reto3.entities.Client getClient() {
