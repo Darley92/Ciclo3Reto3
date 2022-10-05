@@ -17,14 +17,15 @@ public class Message {
     private String messageText;
 
     @ManyToOne
+    @JoinColumn(name = "id")
+    @JsonIgnoreProperties({"messages","reservations"})
+    private Machine machine;
+    @ManyToOne
     @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties("messages")
+    @JsonIgnoreProperties({"messages","reservations"})
     private Client Client;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    @JsonIgnoreProperties("messages")
-    private Machine machine;
+
 
     public com.example.ciclo3_reto3.entities.Client getClient() {
         return Client;
